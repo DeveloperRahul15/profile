@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rahulchoubey.dev/sitemap.xml
+Sitemap: https://rahulchoubey.netlify.app/sitemap.xml

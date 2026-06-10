@@ -13,7 +13,9 @@ export function initContactForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
 
-  form.querySelectorAll("input, textarea").forEach((input) => {
+  const fields = () => form.querySelectorAll(".form-group input, .form-group textarea");
+
+  fields().forEach((input) => {
     input.addEventListener("input", () => input.classList.remove("is-invalid"));
   });
 
@@ -21,7 +23,8 @@ export function initContactForm() {
     e.preventDefault();
 
     const btn = form.querySelector('button[type="submit"]');
-    const inputs = form.querySelectorAll("input, textarea");
+    const status = document.getElementById("formStatus");
+    const inputs = fields();
     let valid = true;
 
     inputs.forEach((input) => {
@@ -51,26 +54,50 @@ export function initContactForm() {
 
     if (!valid) return;
 
-    btn.classList.add("is-success");
     btn.disabled = true;
 
-    if (typeof gsap !== "undefined") {
-      gsap.fromTo(
-        btn,
-        { boxShadow: "0 0 0 rgba(212, 225, 87, 0)" },
-        {
-          boxShadow: "0 0 30px rgba(212, 225, 87, 0.35)",
-          duration: 0.6,
-          yoyo: true,
-          repeat: 1,
-        }
-      );
-    }
+    // Netlify Forms: POST url-encoded data back to the page path.
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
 
-    setTimeout(() => {
-      form.reset();
-      btn.classList.remove("is-success");
-      btn.disabled = false;
-    }, 3000);
+        btn.classList.add("is-success");
+        if (status) status.textContent = "Message sent successfully.";
+
+        if (typeof gsap !== "undefined") {
+          gsap.fromTo(
+            btn,
+            { boxShadow: "0 0 0 rgba(212, 225, 87, 0)" },
+            {
+              boxShadow: "0 0 30px rgba(212, 225, 87, 0.35)",
+              duration: 0.6,
+              yoyo: true,
+              repeat: 1,
+            }
+          );
+        }
+
+        setTimeout(() => {
+          form.reset();
+          btn.classList.remove("is-success");
+          btn.disabled = false;
+        }, 3000);
+      })
+      .catch(() => {
+        btn.classList.add("is-error");
+        if (status) {
+          status.textContent =
+            "Message could not be sent. Please email rahulchoubey.codes@gmail.com directly.";
+        }
+
+        setTimeout(() => {
+          btn.classList.remove("is-error");
+          btn.disabled = false;
+        }, 4000);
+      });
   });
 }

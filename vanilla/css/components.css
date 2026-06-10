@@ -318,6 +318,23 @@
   transform: translateY(0);
 }
 
+.btn__error {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s var(--ease);
+  color: #c0392b;
+}
+
+.btn.is-error .btn__text {
+  opacity: 0;
+}
+
+.btn.is-error .btn__error {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Section headers */
 .section-header {
   margin-bottom: 4rem;
