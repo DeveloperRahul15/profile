@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rahul Choubey | Shopify Developer</title>
+  <meta name="description" content="Rahul Choubey — Shopify Developer with 4.5+ years of experience. 20+ store launches, performance optimization, Shopify Plus, and international markets." />
+  <meta name="keywords" content="Shopify Developer, Liquid, Shopify Plus, Theme Development, E-commerce, Performance Optimization" />
+  <meta name="author" content="Rahul Choubey" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="canonical" href="https://rahulchoubey.dev/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rahulchoubey.dev/" />
+  <meta property="og:site_name" content="Rahul Choubey — Portfolio" />
+  <meta property="og:title" content="Rahul Choubey | Shopify Developer" />
+  <meta property="og:description" content="Shopify Developer with 4.5+ years of experience — custom themes, performance, and international storefronts." />
+  <meta property="og:image" content="https://rahulchoubey.dev/assets/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rahul Choubey | Shopify Developer" />
+  <meta name="twitter:description" content="Shopify Developer with 4.5+ years of experience — custom themes, performance, and international storefronts." />
+  <meta name="twitter:image" content="https://rahulchoubey.dev/assets/img/og-image.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>R</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rahul Choubey",
+    "jobTitle": "Shopify Developer",
+    "description": "Shopify Developer with 4.5+ years of experience building high-performance e-commerce storefronts.",
+    "email": "rahulchoubey.codes@gmail.com",
+    "url": "https://rahulchoubey.dev/",
+    "image": "https://rahulchoubey.dev/assets/img/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ahmedabad",
+      "addressCountry": "IN"
+    },
+    "knowsAbout": ["Shopify", "Shopify Plus", "Liquid", "JavaScript", "E-commerce", "Performance Optimization"],
+    "sameAs": [
+      "https://www.linkedin.com/in/rahul-choubey-b88128389",
+      "https://github.com/rahulchoubey"
+    ]
+  }
+  </script>
+  <style>
+    .file-protocol {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+    .file-protocol.is-visible { display: flex; }
+    .file-protocol__card {
+      max-width: 520px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      background: #111;
+    }
+    .file-protocol h1 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: #d4e157;
+    }
+    .file-protocol p { color: #8a8a8a; line-height: 1.7; margin-bottom: 1rem; }
+    .file-protocol code {
+      display: block;
+      margin: 1.25rem 0;
+      padding: 1rem;
+      background: #0a0a0a;
+      border-radius: 8px;
+      color: #d4e157;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="is-loading">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var light = saved
+          ? saved === "light"
+          : window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (light) document.body.classList.add("light-theme");
+      } catch (e) {
+        /* default dark */
+      }
+    })();
+  </script>
+  <div class="file-protocol" id="fileProtocol" role="alert" aria-live="polite">
+    <div class="file-protocol__card">
+      <h1>Local server required</h1>
+      <p>This portfolio uses ES modules. Browsers block them when opening HTML directly from a folder (<code>file://</code>).</p>
+      <p>Run this in your terminal from the project folder:</p>
+      <code>npm run dev</code>
+      <p>Then open <strong>http://127.0.0.1:5501</strong></p>
+      <p>Or double-click <strong>start.sh</strong> in the project root.</p>
+    </div>
+  </div>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Progress Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__logo">RC</div>
+      <div class="preloader__bar">
+        <div class="preloader__progress" id="preloaderProgress"></div>
+      </div>
+      <span class="preloader__percent" id="preloaderPercent">0%</span>
+    </div>
+  </div>
+
+  <!-- Cinematic Intro -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <span class="intro__word" aria-live="polite"></span>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#hero" class="nav__logo magnetic" data-magnetic>
+        <span class="nav__logo-text">Rahul<span class="accent">.</span></span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" class="nav__link magnetic" data-magnetic>About</a></li>
+        <li><a href="#services" class="nav__link magnetic" data-magnetic>Services</a></li>
+        <li><a href="#work" class="nav__link magnetic" data-magnetic>Work</a></li>
+        <li><a href="#experience" class="nav__link magnetic" data-magnetic>Experience</a></li>
+        <li class="nav__theme">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+            <svg class="theme-toggle__icon theme-toggle__icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+            <svg class="theme-toggle__icon theme-toggle__icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+        </li>
+        <li><a href="#contact" class="nav__cta btn btn--sm magnetic" data-magnetic>Let's Talk</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero section" id="hero" aria-label="Introduction">
+      <div class="hero__bg">
+        <div class="hero__gradient"></div>
+        <div class="hero__grid"></div>
+      </div>
+      <div class="container hero__content">
+        <p class="hero__eyebrow reveal-up" data-reveal id="heroEyebrow">Shopify Developer · 4.5+ Years</p>
+        <h1 class="hero__title">
+          <span class="hero__line">
+            <span class="char-wrap" data-split>building commerce for</span>
+          </span>
+          <span class="hero__line">
+            <span class="hero__rotate" id="heroRotate" aria-hidden="true">max warehouse</span>
+            <span class="sr-only" id="heroRotateLive" aria-live="polite">max warehouse</span>
+          </span>
+        </h1>
+        <p class="hero__subtitle reveal-up" data-reveal>
+          Shopify Developer crafting high-performance storefronts —
+          custom themes, international markets, and conversion-focused experiences.
+        </p>
+        <div class="hero__actions reveal-up" data-reveal>
+          <a href="#work" class="btn btn--primary magnetic" data-magnetic>
+            <span>View Work</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn--outline magnetic" data-magnetic>
+            <span>Get In Touch</span>
+          </a>
+        </div>
+        <div class="hero__stats reveal-up" data-reveal>
+          <div class="hero__stat">
+            <span class="hero__stat-num">20+</span>
+            <span class="hero__stat-label">Store Launches</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">4.5+</span>
+            <span class="hero__stat-label">Years Experience</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">40%</span>
+            <span class="hero__stat-label">Efficiency Gain</span>
+          </div>
+        </div>
+      </div>
+      <a href="#services" class="scroll-indicator magnetic" data-magnetic aria-label="Scroll to services">
+        <span class="scroll-indicator__text">Scroll</span>
+        <span class="scroll-indicator__line"></span>
+      </a>
+    </section>
+
+    <!-- Services -->
+    <section class="services section" id="services" aria-label="Services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label reveal-up" data-reveal>01 — Services</span>
+          <h2 class="section-title reveal-up" data-reveal>what I can do<br /><span class="accent">for your brand</span></h2>
+          <p class="section-desc reveal-up" data-reveal>End-to-end Shopify expertise — from theme architecture to performance and international rollouts.</p>
+        </div>
+        <ul class="services__list" id="servicesList" role="list"></ul>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section class="projects section" id="work" aria-label="Featured work">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label reveal-up" data-reveal>02 — Work</span>
+          <h2 class="section-title reveal-up" data-reveal>featured <span class="accent">engagements</span></h2>
+          <p class="section-desc reveal-up" data-reveal>Live Shopify stores — performance, internationalization, and custom theme development.</p>
+        </div>
+      </div>
+      <div class="projects__track-wrap">
+        <div class="projects__track" id="projectsTrack"></div>
+        <div class="projects__progress">
+          <div class="projects__progress-bar" id="projectsProgress"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about section" id="about" aria-label="About">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label reveal-up" data-reveal>03 — About</span>
+          <h2 class="section-title reveal-up" data-reveal>who <span class="accent">I am</span></h2>
+        </div>
+        <div class="about__grid">
+          <div class="about__visual reveal-up" data-reveal>
+            <div class="about__avatar">
+              <img
+                src="assets/img/profile.webp"
+                alt="Rahul Choubey — Shopify Developer"
+                class="about__photo"
+                id="aboutPhoto"
+                width="480"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="about__avatar-initials" aria-hidden="true">RC</span>
+            </div>
+            <div class="about__badge glass">
+              <span class="about__badge-num">4.5+</span>
+              <span class="about__badge-text">Years in E-commerce</span>
+            </div>
+          </div>
+          <div class="about__content">
+            <p class="about__bio reveal-up" data-reveal id="aboutBio0"></p>
+            <p class="about__bio reveal-up" data-reveal id="aboutBio1"></p>
+            <ul class="about__highlights" id="aboutHighlights"></ul>
+            <div class="achievements" id="achievementsGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience section" id="experience" aria-label="Experience">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <span class="section-label reveal-up" data-reveal>04 — Experience</span>
+          <h2 class="section-title reveal-up" data-reveal>professional <span class="accent">journey</span></h2>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section class="booking-cta section" id="cta" aria-label="Book a consultation">
+      <div class="booking-cta__ambient" aria-hidden="true">
+        <div class="booking-cta__glow"></div>
+        <div class="booking-cta__grid-bg"></div>
+      </div>
+      <div class="container booking-cta__grid">
+        <div class="booking-cta__content">
+          <span class="section-label" data-booking-reveal>05 — Collaboration</span>
+          <h2 class="booking-cta__title">
+            <span class="booking-cta__title-line" data-booking-reveal>ready to build your next</span>
+            <span class="booking-cta__title-line" data-booking-reveal><span class="accent">shopify</span> experience?</span>
+          </h2>
+          <div class="booking-cta__accent-line" aria-hidden="true"></div>
+          <p class="booking-cta__desc" data-booking-reveal>
+            Let's discuss your project and create something exceptional together.
+          </p>
+          <div class="booking-cta__actions" data-booking-reveal>
+            <a href="#contact" class="btn btn--primary magnetic" data-magnetic>
+              <span>Book a Call</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#work" class="btn btn--outline magnetic" data-magnetic>View My Work</a>
+          </div>
+          <div class="booking-cta__chips" id="bookingChips" aria-live="polite" data-booking-reveal></div>
+        </div>
+        <div class="booking-cta__portal">
+          <div class="booking-cta__frame glass">
+            <video
+              id="bookingVideo"
+              class="booking-cta__video"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            ></video>
+            <div class="booking-cta__fallback" aria-hidden="true">
+              <div class="booking-cta__fallback-orb"></div>
+              <div class="booking-cta__fallback-orb booking-cta__fallback-orb--delay"></div>
+            </div>
+            <div class="booking-cta__frame-shine" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact section" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="contact__grid">
+          <div class="contact__info">
+            <span class="section-label reveal-up" data-reveal>06 — Contact</span>
+            <h2 class="section-title reveal-up" data-reveal>let's build<br /><span class="accent">something great</span></h2>
+            <p class="contact__desc reveal-up" data-reveal>
+              Available for remote contracts, freelance projects, and Shopify consulting.
+              Based in Ahmedabad, India — working with brands globally.
+            </p>
+            <div class="contact__links reveal-up" data-reveal>
+              <a href="mailto:rahulchoubey.codes@gmail.com" class="contact__link magnetic" data-magnetic id="contactEmail">
+                <span class="contact__link-icon">✉</span>
+                <span>rahulchoubey.codes@gmail.com</span>
+              </a>
+              <a href="https://www.linkedin.com/in/rahul-choubey-b88128389" target="_blank" rel="noopener noreferrer" class="contact__link magnetic" data-magnetic>
+                <span class="contact__link-icon">in</span>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/rahulchoubey" target="_blank" rel="noopener noreferrer" class="contact__link magnetic" data-magnetic>
+                <span class="contact__link-icon">⌥</span>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+          <form class="contact__form glass reveal-up" data-reveal id="contactForm" novalidate>
+            <div class="form-group">
+              <input type="text" id="name" name="name" required autocomplete="name" placeholder=" " maxlength="100" />
+              <label for="name">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder=" " maxlength="254" />
+              <label for="email">Email Address</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" required placeholder=" " maxlength="200" />
+              <label for="subject">Subject</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" rows="4" required placeholder=" " maxlength="2000"></textarea>
+              <label for="message">Your Message</label>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full magnetic" data-magnetic>
+              <span class="btn__text">Send Message</span>
+              <span class="btn__success" aria-hidden="true">✓ Sent Successfully</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; <span id="year"></span> Rahul Choubey — creating digital commerce experiences</p>
+      <a href="#hero" class="footer__top magnetic" data-magnetic aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script type="module" src="js/main.js" id="appModule"></script>
+  <script>
+    if (location.protocol === "file:") {
+      document.getElementById("appModule")?.remove();
+      document.getElementById("fileProtocol")?.classList.add("is-visible");
+      document.body.classList.remove("is-loading");
+    }
+  </script>
+</body>
+</html>

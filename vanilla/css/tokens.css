@@ -1,0 +1,41 @@
+:root {
+  --bg: #0a0a0a;
+  --bg-elevated: #111111;
+  --bg-glass: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --text: #f5f5f5;
+  --text-muted: #8a8a8a;
+  --accent: #d4e157;
+  --accent-dim: rgba(212, 225, 87, 0.12);
+  --accent-glow: rgba(212, 225, 87, 0.35);
+  --on-accent: #0a0a0a;
+  --header-scrim: rgba(10, 10, 10, 0.88);
+  --header-scrim-strong: rgba(10, 10, 10, 0.97);
+  --grid-line: rgba(255, 255, 255, 0.02);
+  --font-display: "Syne", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --container: 1280px;
+  --section-pad: clamp(5rem, 12vw, 9rem);
+  --header-h: 80px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.light-theme {
+  --bg: #f6f6f1;
+  --bg-elevated: #ffffff;
+  --bg-glass: rgba(10, 10, 10, 0.04);
+  --border: rgba(10, 10, 10, 0.1);
+  --border-hover: rgba(10, 10, 10, 0.28);
+  --text: #141414;
+  --text-muted: #5d5d57;
+  --accent: #5f7300;
+  --accent-dim: rgba(95, 115, 0, 0.1);
+  --accent-glow: rgba(95, 115, 0, 0.3);
+  --on-accent: #ffffff;
+  --header-scrim: rgba(246, 246, 241, 0.88);
+  --header-scrim-strong: rgba(246, 246, 241, 0.97);
+  --grid-line: rgba(10, 10, 10, 0.04);
+}

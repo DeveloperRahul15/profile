@@ -1,0 +1,37 @@
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleY(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .char {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-indicator__line {
+    animation: none;
+  }
+}

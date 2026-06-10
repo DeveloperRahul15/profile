@@ -1,0 +1,9 @@
+{
+  "name": "rahul-choubey-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd vanilla && python3 -m http.server 5501",
+    "start": "cd vanilla && python3 -m http.server 5501"
+  }
+}

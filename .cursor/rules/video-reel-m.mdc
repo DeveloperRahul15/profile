@@ -1,0 +1,13 @@
+---
+description: Booking CTA video must use the reel asset
+alwaysApply: true
+---
+
+# Booking CTA Video
+
+The booking CTA section must use the showreel video located at
+`vanilla/assets/video/reel.mp4` (served as `assets/video/reel.mp4`).
+
+- Set `bookingCta.video.src` in `vanilla/js/data.js` to `assets/video/reel.mp4`.
+- Do not point the CTA video at other files (e.g. `videoplayback.mp4`).
+- Keep the reel under ~15 MB; compress replacements with ffmpeg/HandBrake before committing.
