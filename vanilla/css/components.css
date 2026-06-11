@@ -23,7 +23,7 @@
   font-size: clamp(2rem, 8vw, 5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  text-transform: lowercase;
+  text-transform: capitalize;
   opacity: 0;
 }
 
@@ -125,11 +125,30 @@
   height: 100%;
 }
 
-.nav__logo-text {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.nav__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav__logo-img {
+  display: block;
+  height: 2.25rem;
+  width: auto;
+  max-width: min(180px, 42vw);
+  object-fit: contain;
+}
+
+.nav__logo-img--light {
+  display: none;
+}
+
+body.light-theme .nav__logo-img--dark {
+  display: none;
+}
+
+body.light-theme .nav__logo-img--light {
+  display: block;
 }
 
 .nav__toggle {
@@ -360,7 +379,7 @@
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  text-transform: lowercase;
+  text-transform: capitalize;
 }
 
 .section-desc {
@@ -457,20 +476,56 @@
 
 /* Responsive nav */
 @media (max-width: 768px) {
+  /* backdrop-filter on the header breaks position:fixed menu children after scroll */
+  .header,
+  .header.is-scrolled,
+  .header.is-menu-open {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .header.is-scrolled {
+    background: var(--header-scrim);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header.is-menu-open {
+    z-index: 1002;
+    background: var(--header-scrim);
+  }
+
   .nav__toggle {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1003;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--header-scrim);
+  }
+
+  .nav__logo {
+    position: relative;
+    z-index: 1003;
   }
 
   .nav__links {
     position: fixed;
     inset: 0;
+    z-index: 1001;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
+    margin: 0;
     background: var(--header-scrim-strong);
-    backdrop-filter: blur(20px);
     transform: translateX(100%);
     transition: transform 0.5s var(--ease);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav__links.is-open {
@@ -480,6 +535,7 @@
   .nav__link {
     font-size: 1.5rem;
     font-family: var(--font-display);
+    color: var(--text);
   }
 
   .nav__links .nav__cta {
@@ -487,6 +543,10 @@
     margin-top: 1rem;
     padding: 1rem 2.5rem;
     font-size: 1rem;
+  }
+
+  .nav__theme {
+    justify-content: center;
   }
 
   .theme-toggle {

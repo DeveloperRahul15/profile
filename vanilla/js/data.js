@@ -3,7 +3,7 @@
 export const site = {
   name: "Rahul Choubey",
   title: "Shopify Developer",
-  tagline: "crafting digital commerce experiences",
+  tagline: "Crafting Digital Commerce Experiences",
   email: "rahulchoubey.codes@gmail.com",
   phone: "+91 97705 76062",
   linkedin: "https://www.linkedin.com/in/rahul-choubey-b88128389",
@@ -15,7 +15,7 @@ export const site = {
 };
 
 export const introSequence = [
-  site.name.toLowerCase(),
+  site.name,
   "max warehouse",
   "kashkha",
   "bruce bolt",
@@ -26,9 +26,7 @@ export const heroProjects = [
   "max warehouse",
   "kashkha",
   "bruce bolt",
-  "xtreme soccer",
-  "niiyaa",
-  "blend it raw",
+  "shop milano",
 ];
 
 export const services = [
@@ -96,6 +94,15 @@ export const projects = [
       "Cleaned theme code, optimized assets, redesigned PDP/home layouts, and improved B2B/B2C filtering.",
     skills: ["Liquid", "Performance", "Hotjar", "B2B"],
     gradient: "violet",
+  },
+  {
+    title: "Shop LC",
+    url: "https://www.shoplc.com/",
+    category: "Jewelry & Live Commerce",
+    description:
+      "Enterprise jewelry and lifestyle storefront — live TV integration, auction flows, and high-traffic catalog UX.",
+    skills: ["Shopify Plus", "Liquid", "Live TV"],
+    gradient: "rose",
   },
   {
     title: "Xtreme Soccer Online",
@@ -224,7 +231,7 @@ export const experience = [
  * Keep files under ~15 MB for fast web loading (compress with HandBrake/ffmpeg).
  */
 export const bookingCta = {
-  chips: ["themes", "performance", "markets", "integrations", "optimization"],
+  chips: ["Themes", "Performance", "Markets", "Integrations", "Optimization"],
   video: {
     src: "assets/video/reel.mp4",
     poster: "",

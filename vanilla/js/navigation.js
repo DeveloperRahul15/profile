@@ -4,20 +4,28 @@ export function initNavigation() {
   const header = document.getElementById("header");
 
   if (toggle && links) {
-    toggle.addEventListener("click", () => {
-      const isOpen = links.classList.toggle("is-open");
+    const setMenuOpen = (isOpen) => {
+      links.classList.toggle("is-open", isOpen);
       toggle.classList.toggle("is-active", isOpen);
       toggle.setAttribute("aria-expanded", String(isOpen));
+      header?.classList.toggle("is-menu-open", isOpen);
       document.body.style.overflow = isOpen ? "hidden" : "";
+    };
+
+    const closeMenu = () => setMenuOpen(false);
+
+    toggle.addEventListener("click", () => {
+      setMenuOpen(!links.classList.contains("is-open"));
     });
 
     links.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        links.classList.remove("is-open");
-        toggle.classList.remove("is-active");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && links.classList.contains("is-open")) {
+        closeMenu();
+      }
     });
   }
 

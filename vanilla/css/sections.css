@@ -46,12 +46,12 @@
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 6.5rem);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin-bottom: 2rem;
-  text-transform: lowercase;
+  text-transform: capitalize;
 }
 
 .hero__line {
@@ -71,7 +71,7 @@
 }
 
 .hero__subtitle {
-  max-width: 560px;
+  max-width: 100%;
   font-size: 1.15rem;
   color: var(--text-muted);
   margin-bottom: 2.5rem;
@@ -363,7 +363,7 @@
   font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
-  text-transform: lowercase;
+  text-transform: capitalize;
   letter-spacing: -0.02em;
 }
 
@@ -739,7 +739,7 @@
   font-size: clamp(2.25rem, 5.5vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
-  text-transform: lowercase;
+  text-transform: capitalize;
   line-height: 1.08;
   margin-bottom: 1.25rem;
 }
@@ -780,7 +780,7 @@
 .booking-cta__chip {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
-  text-transform: lowercase;
+  text-transform: capitalize;
   color: var(--text-muted);
   padding: 0.4rem 0.85rem;
   border: 1px solid var(--border);
@@ -946,6 +946,10 @@
 .contact__form {
   padding: 2.5rem;
   border-radius: var(--radius);
+}
+
+div#projectsTrack article.project-card {
+  transform: translate(0px, 0px)!important;
 }
 
 /* Responsive */
