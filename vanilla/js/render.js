@@ -55,13 +55,7 @@ export function populateStaticContent() {
   about.bio.forEach((paragraph, i) => {
     const el = document.getElementById(`aboutBio${i}`);
     if (!el) return;
-    if (i === 0) {
-      el.innerHTML =
-        "I'm <strong>Rahul Choubey</strong>, a Shopify Developer with 4.5+ years building high-performance e-commerce experiences. From custom Liquid themes to international market rollouts, I help brands transform storefronts into conversion engines.";
-    } else {
-      el.innerHTML =
-        "Currently at <strong>Brainvire Infotech</strong>, I work with enterprise clients — delivering pixel-perfect themes, optimizing Core Web Vitals, and integrating AI-assisted development workflows.";
-    }
+    el.innerHTML = escapeHtml(paragraph);
   });
 
   const highlights = document.getElementById("aboutHighlights");

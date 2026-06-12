@@ -13,6 +13,7 @@ export function initContactForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
 
+  const btn = form.querySelector('button[type="submit"]');
   const fields = () => form.querySelectorAll(".form-group input, .form-group textarea");
 
   fields().forEach((input) => {
@@ -22,7 +23,6 @@ export function initContactForm() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const btn = form.querySelector('button[type="submit"]');
     const status = document.getElementById("formStatus");
     const inputs = fields();
     let valid = true;
@@ -53,6 +53,7 @@ export function initContactForm() {
       });
 
     if (!valid) return;
+    if (!btn) return;
 
     btn.disabled = true;
 
