@@ -26,7 +26,7 @@ export function initCursor() {
   });
 
   document
-    .querySelectorAll("a, button, .magnetic, input, textarea, .service-item")
+    .querySelectorAll("a, button, .magnetic, input, textarea, .service-card")
     .forEach((el) => {
       el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));

@@ -1,15 +1,12 @@
 import { projects } from "./data.js";
 import { escapeHtml, isSafeUrl } from "./utils.js";
+import { initCaseStudies } from "./case-studies.js";
 
 const SHOT_W = 1200;
 const SHOT_H = 675;
 const SHOT_RETRY_MS = 3500;
 const SHOT_MAX_RETRIES = 6;
 
-/**
- * Live homepage screenshot via WordPress mShots.
- * A project can override this with a local `image` path in data.js.
- */
 function shotUrl(url) {
   return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=${SHOT_W}&h=${SHOT_H}`;
 }
@@ -32,6 +29,7 @@ export function renderProjects() {
       const domain = escapeHtml(domainOf(p.url));
       const src = escapeHtml(p.image || shotUrl(p.url));
       const title = escapeHtml(p.title);
+      const hasCase = p.id ? `data-case-study="${escapeHtml(p.id)}"` : "";
 
       return `
     <article class="project-card">
@@ -41,16 +39,7 @@ export function renderProjects() {
           <span class="project-card__domain">${domain}</span>
         </div>
         <div class="project-card__viewport" data-gradient="${p.gradient}">
-          <img
-            class="project-card__shot"
-            src="${src}"
-            data-src="${src}"
-            alt="${title} — homepage preview"
-            width="${SHOT_W}"
-            height="${SHOT_H}"
-            loading="lazy"
-            decoding="async"
-          />
+          <img class="project-card__shot" src="${src}" data-src="${src}" alt="${title} — homepage preview" width="${SHOT_W}" height="${SHOT_H}" loading="lazy" decoding="async" />
           <div class="project-card__placeholder" aria-hidden="true">
             <span class="project-card__ph-name">${title}</span>
             <span class="project-card__ph-domain">${domain}</span>
@@ -62,11 +51,19 @@ export function renderProjects() {
         <span class="project-card__category">${escapeHtml(p.category)}</span>
         <h3 class="project-card__title">${title}</h3>
         <p class="project-card__desc">${escapeHtml(p.description)}</p>
+        <div class="project-card__detail">
+          ${p.challenge ? `<p><strong>Challenge:</strong> ${escapeHtml(p.challenge)}</p>` : ""}
+          ${p.solution ? `<p><strong>Solution:</strong> ${escapeHtml(p.solution)}</p>` : ""}
+          ${p.performance ? `<p class="project-card__performance"><strong>Performance:</strong> ${escapeHtml(p.performance)}</p>` : ""}
+          ${p.impact ? `<p class="project-card__impact"><strong>Impact:</strong> ${escapeHtml(p.impact)}</p>` : ""}
+        </div>
         <div class="project-card__tech">
           ${p.skills.map((s) => `<span>${escapeHtml(s)}</span>`).join("")}
         </div>
         <div class="project-card__actions">
-          <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary magnetic" data-magnetic>Visit Website</a>
+          <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary magnetic" data-magnetic>Live Demo</a>
+          ${p.id ? `<button type="button" class="btn btn--sm btn--outline magnetic" data-magnetic ${hasCase}>Case Study</button>` : ""}
+          ${p.github ? `<a href="${escapeHtml(p.github)}" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost magnetic" data-magnetic>GitHub</a>` : ""}
         </div>
       </div>
     </article>`;
@@ -74,31 +71,24 @@ export function renderProjects() {
     .join("");
 
   initShots(track);
+  initCaseStudies(projects);
 }
 
-/**
- * mShots serves a 400x300 "generating" gif until the real capture is ready.
- * Detect it by natural size and retry with a cache-buster; fall back to the
- * styled placeholder if the capture never materializes or errors out.
- */
 function initShots(track) {
   track.querySelectorAll(".project-card__shot").forEach((img) => {
     let attempts = 0;
 
     const onLoad = () => {
-      // mShots serves a small loading gif until the real capture (1200px) is ready
-      const generating = img.naturalWidth < 600;
-
-      if (!generating) {
+      const isLocal = !img.src.includes("mshots");
+      const generating = !isLocal && img.naturalWidth < 600;
+      if (!generating && img.naturalWidth > 0) {
         img.closest(".project-card__viewport").classList.add("is-loaded");
         return;
       }
-
       if (attempts >= SHOT_MAX_RETRIES) {
         showPlaceholder(img);
         return;
       }
-
       attempts += 1;
       setTimeout(() => {
         img.src = img.dataset.src + "&retry=" + attempts;
@@ -107,7 +97,6 @@ function initShots(track) {
 
     img.addEventListener("load", onLoad);
     img.addEventListener("error", () => showPlaceholder(img));
-
     if (img.complete && img.naturalWidth > 0) onLoad();
   });
 }
@@ -146,10 +135,10 @@ export function initProjects() {
 
     gsap.from(track.querySelectorAll(".project-card"), {
       opacity: 0,
-      y: 60,
       duration: 0.9,
       ease: "power3.out",
       stagger: 0.1,
+      clearProps: "opacity",
       scrollTrigger: {
         trigger: ".projects__track-wrap",
         start: "top 70%",
@@ -160,14 +149,10 @@ export function initProjects() {
     track.querySelectorAll(".project-card").forEach((card) => {
       gsap.from(card, {
         opacity: 0,
-        y: 50,
         duration: 0.8,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 88%",
-          toggleActions: "play none none none",
-        },
+        clearProps: "opacity",
+        scrollTrigger: { trigger: card, start: "top 88%", toggleActions: "play none none none" },
       });
     });
   }

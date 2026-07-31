@@ -72,9 +72,9 @@ export function initContactForm() {
         if (typeof gsap !== "undefined") {
           gsap.fromTo(
             btn,
-            { boxShadow: "0 0 0 rgba(212, 225, 87, 0)" },
+            { boxShadow: "0 0 0 rgba(254, 214, 96, 0)" },
             {
-              boxShadow: "0 0 30px rgba(212, 225, 87, 0.35)",
+              boxShadow: "0 0 30px rgba(254, 214, 96, 0.35)",
               duration: 0.6,
               yoyo: true,
               repeat: 1,

@@ -1,20 +1,5 @@
-import { achievements, about, experience, site } from "./data.js";
+import { about, experience, site } from "./data.js";
 import { escapeHtml } from "./utils.js";
-
-export function renderAchievements() {
-  const grid = document.getElementById("achievementsGrid");
-  if (!grid) return;
-
-  grid.innerHTML = achievements
-    .map(
-      (a) => `
-    <div class="achievement-card glass" data-reveal>
-      <span class="achievement-card__value">${escapeHtml(a.value)}</span>
-      <span class="achievement-card__label">${escapeHtml(a.label)}</span>
-    </div>`
-    )
-    .join("");
-}
 
 export function renderExperience() {
   const timeline = document.getElementById("timeline");
@@ -29,8 +14,14 @@ export function renderExperience() {
         <span class="timeline__period">${escapeHtml(job.period)}</span>
         <h3 class="timeline__role">${escapeHtml(job.role)}</h3>
         <p class="timeline__company">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p>
+        ${job.technologies?.length ? `
+        <div class="timeline__tech">
+          ${job.technologies.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+        </div>` : ""}
+        ${job.impact ? `<p class="timeline__impact"><strong>Business Impact:</strong> ${escapeHtml(job.impact)}</p>` : ""}
+        <h4 class="timeline__achievements-title">Key Achievements</h4>
         <ul class="timeline__achievements">
-          ${job.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}
+          ${(job.achievements || job.highlights || []).map((h) => `<li>${escapeHtml(h)}</li>`).join("")}
         </ul>
       </div>
     </article>`
@@ -49,8 +40,11 @@ export function populateStaticContent() {
 
   const heroEyebrow = document.getElementById("heroEyebrow");
   if (heroEyebrow) {
-    heroEyebrow.textContent = `${site.title} · ${site.yearsExperience} Years`;
+    heroEyebrow.textContent = `${site.title} · ${site.yearsExperience}`;
   }
+
+  const heroTagline = document.getElementById("heroTagline");
+  if (heroTagline) heroTagline.textContent = site.tagline;
 
   about.bio.forEach((paragraph, i) => {
     const el = document.getElementById(`aboutBio${i}`);
@@ -65,12 +59,51 @@ export function populateStaticContent() {
       .join("");
   }
 
-  const emailLink = document.getElementById("contactEmail");
+  const aboutCards = document.getElementById("aboutCards");
+  if (aboutCards && about.cards) {
+    aboutCards.innerHTML = about.cards
+      .map(
+        (c) => `
+      <article class="about-card glass" data-reveal>
+        <h3 class="about-card__title">${escapeHtml(c.title)}</h3>
+        <p class="about-card__desc">${escapeHtml(c.desc)}</p>
+      </article>`
+      )
+      .join("");
+  }
+
+  const availabilityEl = document.querySelectorAll("[data-availability]");
+  availabilityEl.forEach((el) => {
+    el.textContent = site.availability;
+  });
+
+  const whatsappLinks = document.querySelectorAll("[data-whatsapp]");
+  whatsappLinks.forEach((link) => {
+    if (site.whatsapp) link.setAttribute("href", site.whatsapp);
+  });
+
+  const calendlyLinks = document.querySelectorAll("[data-calendly]");
+  calendlyLinks.forEach((link) => {
+    if (site.calendly) link.setAttribute("href", site.calendly);
+  });
+
+  const heroLocation = document.getElementById("heroLocation");
+  if (heroLocation) heroLocation.textContent = site.location;
+
+  const heroName = document.getElementById("heroName");
+  if (heroName) heroName.textContent = site.name;
+
+  const heroTitle = document.getElementById("heroTitle");
+  if (heroTitle) heroTitle.textContent = site.title;
+
+  const resumeLinks = document.querySelectorAll("[data-resume]");
+  resumeLinks.forEach((link) => {
+    if (site.resume) link.setAttribute("href", site.resume);
+  });
+
+  const emailLink = document.getElementById("contactEmailBtn");
   if (emailLink && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.email)) {
     emailLink.href = `mailto:${encodeURIComponent(site.email)}`;
-    if (emailLink.lastElementChild) {
-      emailLink.lastElementChild.textContent = site.email;
-    }
   }
 
   initAboutPhoto();
