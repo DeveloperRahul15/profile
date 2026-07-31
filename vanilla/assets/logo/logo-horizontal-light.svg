@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 44" role="img" aria-label="Rahul Choubey">
+  <g transform="translate(0 -2) scale(0.8333)">
+    <path fill="#0F172A" d="M8 8h6v32H8V8zm0 0h16v6H8V8zm0 14h14v6H8v-6zM22 28h5l4 12h-6l-3-8V28z"/>
+    <path fill="#FED660" d="M37 12a12 12 0 1 0 0 24h-6a6 6 0 1 1 0-12h6V12z"/>
+  </g>
+  <text x="46" y="21" fill="#0F172A" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="-0.03em">Rahul Choubey</text>
+  <text x="46" y="36" fill="#64748B" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="9.5" font-weight="500" letter-spacing="0.07em">SENIOR SHOPIFY DEVELOPER</text>
+</svg>

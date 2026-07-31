@@ -1,45 +1,61 @@
 import { services } from "./data.js";
 import { escapeHtml } from "./utils.js";
 
-export function renderServices() {
-  const list = document.getElementById("servicesList");
-  if (!list) return;
+const ICONS = {
+  theme: "◈",
+  setup: "⚙",
+  migration: "→",
+  performance: "⚡",
+  features: "⊞",
+  apps: "⊕",
+  plus: "★",
+};
 
-  list.innerHTML = services
+export function renderServices() {
+  const grid = document.getElementById("servicesGrid");
+  if (!grid) return;
+
+  grid.innerHTML = services
     .map(
-      (s, i) => `
-    <li class="service-item${i === 0 ? " is-active" : ""}" data-service="${s.id}" tabindex="0" role="button" aria-expanded="${i === 0}">
-      <span class="service-item__num">${s.id}</span>
-      <h3 class="service-item__title">${escapeHtml(s.title)}</h3>
-      <p class="service-item__desc">${escapeHtml(s.description)}</p>
-      <div class="service-item__tags">
+      (s) => `
+    <article class="service-card glass" tabindex="0">
+      <span class="service-card__icon" aria-hidden="true">${ICONS[s.icon] || "◈"}</span>
+      <span class="service-card__num">${s.id}</span>
+      <h3 class="service-card__title">${escapeHtml(s.title)}</h3>
+      <p class="service-card__desc">${escapeHtml(s.description)}</p>
+      <div class="service-card__tags">
         ${s.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
       </div>
-    </li>`
+    </article>`
     )
     .join("");
 }
 
 export function initServices() {
-  const items = document.querySelectorAll(".service-item");
+  if (typeof gsap === "undefined") return;
 
-  function activate(item) {
-    items.forEach((el) => {
-      const active = el === item;
-      el.classList.toggle("is-active", active);
-      el.setAttribute("aria-expanded", String(active));
+  const grid = document.getElementById("servicesGrid");
+  if (!grid) return;
+
+  gsap.from(grid.querySelectorAll(".service-card"), {
+    opacity: 0,
+    y: 32,
+    duration: 0.65,
+    stagger: 0.07,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: grid,
+      start: "top 88%",
+      toggleActions: "play none none none",
+    },
+  });
+
+  gsap.utils.toArray(".service-card").forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      gsap.to(card, { y: -6, duration: 0.35, ease: "power2.out" });
     });
-  }
-
-  items.forEach((item) => {
-    item.addEventListener("mouseenter", () => activate(item));
-    item.addEventListener("focus", () => activate(item));
-    item.addEventListener("click", () => activate(item));
-    item.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        activate(item);
-      }
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, { y: 0, duration: 0.4, ease: "power2.out" });
     });
   });
 }

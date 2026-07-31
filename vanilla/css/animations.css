@@ -9,6 +9,10 @@
   transform: translateY(100%);
 }
 
+.char--space {
+  min-width: 0.35em;
+}
+
 @keyframes scrollPulse {
   0%, 100% {
     opacity: 0.3;

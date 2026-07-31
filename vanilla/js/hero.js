@@ -1,5 +1,5 @@
 import { heroProjects } from "./data.js";
-import { prefersReducedMotion, splitText } from "./utils.js";
+import { applySplitGradient, prefersReducedMotion, splitText } from "./utils.js";
 
 export function initHero() {
   if (typeof gsap === "undefined") return;
@@ -8,7 +8,20 @@ export function initHero() {
   const splitEls = document.querySelectorAll("[data-split]");
   if (!isNarrow && !prefersReducedMotion) splitText(splitEls);
 
-  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  const heroName = document.getElementById("heroName");
+  if (heroName) {
+    requestAnimationFrame(() => applySplitGradient(heroName));
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => applySplitGradient(heroName));
+    }
+  }
+
+  const tl = gsap.timeline({
+    defaults: { ease: "power3.out" },
+    onComplete: () => {
+      if (heroName) applySplitGradient(heroName);
+    },
+  });
 
   if (!isNarrow && !prefersReducedMotion) {
     tl.to(".hero__line .char", {
@@ -28,15 +41,19 @@ export function initHero() {
   }
 
   tl
-    .to("[data-reveal].hero__eyebrow, .hero__subtitle, .hero__actions, .hero__stats", {
+    .to(".hero__meta, .hero__role, .hero__tagline, .hero__subtitle, .hero__actions, .hero__stats", {
       y: 0,
       opacity: 1,
       duration: 0.8,
-      stagger: 0.15,
+      stagger: 0.12,
     }, 0.5)
     .from(".scroll-indicator", { opacity: 0, y: 20, duration: 0.6 }, 1);
 
   initRotatingProjects();
+}
+
+export function refreshHeroNameGradient() {
+  applySplitGradient(document.getElementById("heroName"));
 }
 
 function initRotatingProjects() {
